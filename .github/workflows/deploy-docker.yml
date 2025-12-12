@@ -18,11 +18,11 @@ jobs:
       - name: Construye Imagen
         run: |
           echo "Building Docker image..."
-          docker build -t edwinast/cu-ms-proyecto1:${{ github.run_number }} .
+          docker build -t edwinast/cu-ms-proy:${{ github.run_number }} .
       - name: Pushea Imagen
         run: |
           echo "Pushing Docker image..."
-          docker push edwinast/cu-ms-proyecto1:${{ github.run_number }}
+          docker push edwinast/cu-ms-proy:${{ github.run_number }}
 
   deploy:
     name: DEPLOY

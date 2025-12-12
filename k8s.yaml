@@ -2,24 +2,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cu-ms-proyecto1
+  name: cu-ms-proy
   namespace: edwinast-dev
   labels:
-    app: cu-ms-proyecto1
+    app: cu-ms-proy
     areanegocio: pagos
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: cu-ms-proyecto1
+      app: cu-ms-proy
   template:
     metadata:
       labels:
-        app: cu-ms-proyecto1
+        app: cu-ms-proy
     spec:
       containers:
         - name: hola-mundo
-          image: edwinast/cu-ms-proyecto1:{{ imageTag }}
+          image: edwinast/cu-ms-proy:{{ imageTag }}
           ports:
             - containerPort: 3005
           resources:
@@ -58,17 +58,17 @@ spec:
             initialDelaySeconds: 5
           envFrom:
             - configMapRef:
-                name: cu-ms-proyecto1
+                name: cu-ms-proy
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: cu-ms-proyecto1
+  name: cu-ms-proy
   namespace: edwinast-dev
 spec:
   selector:
-    app: cu-ms-proyecto1
+    app: cu-ms-proy
   ports:
     - protocol: TCP
       port: 3005
@@ -78,7 +78,7 @@ spec:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: cu-ms-proyecto1
+  name: cu-ms-proy
   namespace: edwinast-dev
 data:
   LOG_LEVEL: "debug"
@@ -87,13 +87,13 @@ data:
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: cu-ms-proyecto1
+  name: cu-ms-proy
   namespace: edwinast-dev
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: cu-ms-proyecto1
+    name: cu-ms-proy
   minReplicas: 2
   maxReplicas: 6
   metrics:
